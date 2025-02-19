@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "https://api.thedollarmillionaire.com/api";  // Corrected backend URL
+const API_URL = process.env.NEXT_PUBLIC_API_URL;  // Corrected backend URL
 
 export const fetchStockData = async (symbol) => {
     try {
