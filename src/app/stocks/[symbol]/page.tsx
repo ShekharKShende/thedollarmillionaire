@@ -81,6 +81,7 @@ const StockPage = () => {
 
   if (error) return <p className="text-red-500 text-center mt-4">{error}</p>;
   if (loadingStock || loadingHistorical) return <p className="text-center text-gray-500 mt-4">Loading...</p>;
+  if (!stock) return null;
 
   return (
     <div className="p-6 max-w-2xl mx-auto bg-white rounded-xl shadow-lg space-y-4">
