@@ -12,6 +12,23 @@ export const fetchStockData = async (symbol) => {
     }
 };
 
+export async function fetchHistoricalData(symbol, period = "7d", interval = "1d") {
+    const response = await fetch(`${API_URL}/historical/${symbol}?period=${period}&interval=${interval}`);
+    const data = await response.json();
+
+    if (!data.prices) throw new Error("No historical data found");
+
+    return data.prices.map((entry) => ({
+        date: entry.date,
+        price: entry.close,
+        open: entry.open,
+        high: entry.high,
+        low: entry.low,
+        close: entry.close
+    }));
+}
+
+
 export const fetchCorporateActions = async (symbol) => {
     try {
         const response = await axios.get(`${API_URL}/corporate-actions/${symbol}`, { withCredentials: true });
